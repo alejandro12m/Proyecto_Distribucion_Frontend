@@ -10,7 +10,7 @@ return(
     <>
     <div style={{width:200, height:50}} className="d-flex flex-row">
         <Logo></Logo>
-        <Titulo Titulo={titulo}></Titulo>
+        <Titulo titulo={titulo}></Titulo>
     </div>
     </>
 );
