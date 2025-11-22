@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import type { Envio } from "../Types/Envio";
 
-const BASE_URL = "https://localhost:7228/api/Envios";
+const BASE_URL = "https://proyectodistribucion-production.up.railway.app/api/Envios";
 
 export function useEnvioCodigo() {
   const [envio, setEnvio] = useState<Envio | undefined>(undefined);

@@ -7,39 +7,22 @@ interface PerfilProps {
 export function Perfil(props: PerfilProps) {
   const { titulo } = props;
   return (
-    <div style={{ 
-      display: "flex", 
-      alignItems: "center", 
-      gap: "12px",
-      marginBottom: "32px",
-      padding: "16px 0"
-    }}>
-      <div style={{
-        width: "48px",
-        height: "48px",
-        borderRadius: "50%",
-        backgroundColor: "#2d5016",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexShrink: 0
-      }}>
+    <div className="d-flex align-items-center gap-3 mb-4 py-3">
+      <div 
+        className="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+        style={{
+          width: "48px",
+          height: "48px",
+          backgroundColor: "#2d5016"
+        }}
+      >
         <Logo />
       </div>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <span style={{ 
-          fontSize: "16px", 
-          fontWeight: "bold", 
-          color: "#333",
-          lineHeight: "1.2"
-        }}>
+      <div className="d-flex flex-column">
+        <span className="fw-bold text-dark" style={{ fontSize: "16px", lineHeight: "1.2" }}>
           {titulo}
         </span>
-        <span style={{ 
-          fontSize: "14px", 
-          color: "#666",
-          lineHeight: "1.2"
-        }}>
+        <span className="text-muted" style={{ fontSize: "14px", lineHeight: "1.2" }}>
           Distribución
         </span>
       </div>

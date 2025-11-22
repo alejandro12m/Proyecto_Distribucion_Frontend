@@ -26,7 +26,7 @@ export function Pages({ items, ventanaActual }: PagesProps) {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+    <div className="d-flex flex-column gap-1">
       {items.map((item, idx) => {
         const isActive = ventanaActual === item.nombres;
         const icon = item.icon || getIconForPage(item.nombres);
@@ -35,21 +35,13 @@ export function Pages({ items, ventanaActual }: PagesProps) {
           <button
             key={idx}
             onClick={item.onClick}
+            className={`btn w-100 text-start d-flex align-items-center gap-3 p-3 border-0 rounded ${isActive ? 'active' : ''}`}
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              padding: "12px 16px",
-              border: "none",
               backgroundColor: isActive ? "#e3f2fd" : "transparent",
               color: isActive ? "#1976d2" : "#333",
-              borderRadius: "8px",
-              cursor: "pointer",
               fontSize: "15px",
               fontWeight: isActive ? "500" : "400",
-              textAlign: "left",
-              width: "100%",
-              transition: "background-color 0.2s",
+              transition: "all 0.2s ease",
             }}
             onMouseEnter={(e) => {
               if (!isActive) {
@@ -62,7 +54,7 @@ export function Pages({ items, ventanaActual }: PagesProps) {
               }
             }}
           >
-            <i className={`bi ${icon}`} style={{ fontSize: "20px" }}></i>
+            <i className={`bi ${icon} fs-5`}></i>
             <span>{item.nombres}</span>
           </button>
         );
