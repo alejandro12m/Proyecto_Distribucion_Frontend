@@ -10,7 +10,7 @@ export function BotonFuncion({ nombre, children, onClick }: PropPage) {
     <button 
       onClick={onClick}
       type="button"
-      className="btn btn-custom btn-lg"
+      className=""
     >
       {children}
       <span> </span>

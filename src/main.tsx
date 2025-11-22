@@ -1,49 +1,41 @@
+import { useState } from "react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { DeleteIcon } from "./components/Atoms/Iconos/Delete";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import { EditIcon } from "./components/Atoms/Iconos/EditIcon";
-import { PlusIcon } from "./components/Atoms/Iconos/PlusIcon";
-import InputText from "./components/Atoms/InputText";
-import { Sidebar } from "./components/Organisms/Sidebar";
+import Dashboard from "./components/Pages/Dashboard";
 import GestionEnvios from "./components/Pages/GestionEnvios";
+import { Sidebar } from "./components/Organisms/Sidebar";
+
+type Ventanas = "Dashboard" | "GestionEnvios";
+
+export function Root() {
+  const [ventanaActual, setVentanaActual] = useState<Ventanas>("Dashboard");
+
+  return (
+    <div style={{ display: "flex", minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
+      <Sidebar
+        titulo="Lácteos del Sur"
+        nombres={["Dashboard", "GestionEnvios"]}
+        links={["/dashboard", "/gestion-envios"]}
+        setVentana={setVentanaActual}
+        ventanaActual={ventanaActual}
+      />
+
+      <main style={{
+        marginLeft: "280px",
+        flex: 1,
+        padding: "24px",
+        width: "calc(100% - 280px)",
+        minHeight: "100vh"
+      }}>
+        {ventanaActual === "Dashboard" && <Dashboard />}
+        {ventanaActual === "GestionEnvios" && <GestionEnvios />}
+      </main>
+    </div>
+  );
+}
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <DeleteIcon></DeleteIcon>
-    <EditIcon></EditIcon>
-    <PlusIcon></PlusIcon>
-    <InputText placeholder="Escriba aqui "></InputText>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <Sidebar
-      titulo="Distribucion Prolac"
-      nombres={["Dasboard", "Gestion de Envios", "Gestion de Cargas"]}
-      links={[
-        "https://www.figma.com/design/b9FVdbZXLG3v6d14mhZitK/Untitled?node-id=0-1&p=f&t=fDfRDEVu65YtZB5Z-0",
-        "https://getbootstrap.com/docs/5.3/components/card",
-        "https://vjudge.net/problem/CodeForces-1883B",
-      ]}
-    ></Sidebar>
-
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
-    <GestionEnvios></GestionEnvios>
+    <Root />
   </StrictMode>
-
 );
