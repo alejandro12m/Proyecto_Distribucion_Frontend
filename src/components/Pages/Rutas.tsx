@@ -8,7 +8,7 @@ export function Rutas(){
   const [selectedEnvio, setSelectedEnvio] = useState<Envio | undefined>(
       undefined
     );
-    const { envio, loading, error, fetchEnvio } = useEnvioCodigo();
+    const { envio, fetchEnvio } = useEnvioCodigo();
   
     useEffect(() => {
       setSelectedEnvio(envio);

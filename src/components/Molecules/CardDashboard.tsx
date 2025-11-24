@@ -8,7 +8,7 @@ interface propCardDasboard{
 }
 
 export function CardDashboard (prop:propCardDasboard){
-const {numero,text,onSelectCodigo}= prop;
+const {numero,text}= prop;
     return(
         <>
         <div className="">
