@@ -1,16 +1,16 @@
-export default function Dashboard() {
+import { useEnvios } from "../../Hooks/useEnvios";
+import { Titulo } from "../Atoms/Titulo";
+import { CardsDashboard } from "../Organisms/CardsDashboard"
+export function Dashboard() {
+  const { data, loading, errores } = useEnvios("todos");
+    if (loading) return <p>Cargando...</p>;
+   if (errores) return <p>Error: {errores}</p>;
+
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-12">
-          <div className="card shadow-sm">
-            <div className="card-body">
-              <h1 className="card-title mb-4">Dashboard</h1>
-              <p className="text-muted">Bienvenido al sistema de gestión de distribución</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
+    <>
+      <Titulo titulo="Dashboard"></Titulo>
+      <CardsDashboard Numeros={[data.length, 5, 12, 8]} Texts={["Ventas", "Pedidos", "Clientes", "Productos"]}></CardsDashboard>
+    </>
   );
 }

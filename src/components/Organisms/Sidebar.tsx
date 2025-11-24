@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Pages } from "../Molecules/Pages";
 import { Perfil } from "../Molecules/Perfil";
 
-type Ventanas = "Dashboard" | "GestionEnvios";
+type Ventanas = "Dashboard" | "GestionEnvios" | "Rutas";
 
 interface ListarPages {
   titulo: string;

@@ -1,13 +1,13 @@
 import { useFetch } from "./useFetch";
 import type { TipoFiltroEnvio } from "../Types/Envio";
 
-const BASE_URL = "https://proyectodistribucion-production.up.railway.app/api/Envios";
+const BASE_URL = "https://ventassc-production.up.railway.app/api/Pedidos";
 
 const URLS: Record<TipoFiltroEnvio, string> = {
-  todos: `${BASE_URL}/ListaEnvios`,
-  pendientes: `${BASE_URL}/ListaEnviosPendientes`,
-  entregados: `${BASE_URL}/ListaEnviosEntregados`,
-  cancelados: `${BASE_URL}/ListaEnviosCancelados`,
+  todos: `${BASE_URL}/ListaDePedidos`,
+  pendientes: `${BASE_URL}/ListarPedidosEnProceso`,
+  entregados: `${BASE_URL}/ListarPedidosEntregados`,
+  cancelados: `${BASE_URL}/ListarPedidosCancelados`,
 };
 
 export function useEnvios(tipoFiltro: TipoFiltroEnvio) {

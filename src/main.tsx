@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import Dashboard from "./components/Pages/Dashboard";
+import {Dashboard} from "./components/Pages/Dashboard";
 import GestionEnvios from "./components/Pages/GestionEnvios";
 import { Sidebar } from "./components/Organisms/Sidebar";
+import { Rutas } from "./components/Pages/Rutas";
 
-type Ventanas = "Dashboard" | "GestionEnvios";
+type Ventanas = "Dashboard" | "GestionEnvios" | "Rutas";
 
 export function Root() {
   const [ventanaActual, setVentanaActual] = useState<Ventanas>("Dashboard");
@@ -31,8 +32,8 @@ export function Root() {
     <div className="d-flex min-vh-100 bg-light">
       <Sidebar
         titulo="Lácteos del Sur"
-        nombres={["Dashboard", "GestionEnvios"]}
-        links={["/dashboard", "/gestion-envios"]}
+        nombres={["Dashboard", "GestionEnvios","Rutas"]}
+        links={["/dashboard", "/gestion-envios","/rutas"]}
         setVentana={setVentanaActual}
         ventanaActual={ventanaActual}
         sidebarOpen={sidebarOpen}
@@ -77,9 +78,11 @@ export function Root() {
           />
         )}
 
-        <div className="p-3 p-md-4">
+        <div className="">
           {ventanaActual === "Dashboard" && <Dashboard />}
           {ventanaActual === "GestionEnvios" && <GestionEnvios />}
+          {ventanaActual === "Rutas" && <Rutas />}
+
         </div>
       </main>
     </div>

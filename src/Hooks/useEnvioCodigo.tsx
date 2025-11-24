@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import type { Envio } from "../Types/Envio";
 
-const BASE_URL = "https://proyectodistribucion-production.up.railway.app/api/Envios";
+const BASE_URL = "https://ventassc-production.up.railway.app/api/Pedidos";
 
 export function useEnvioCodigo() {
   const [envio, setEnvio] = useState<Envio | undefined>(undefined);
@@ -12,7 +12,7 @@ export function useEnvioCodigo() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${BASE_URL}/Listar/${codigo}`);
+      const res = await fetch(`${BASE_URL}/MostrarDetalle/${codigo}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = (await res.json()) as Envio;
       setEnvio(data);

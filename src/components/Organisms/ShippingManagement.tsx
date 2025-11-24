@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEnvios } from "../../Hooks/useEnvios";
-import type { TipoFiltroEnvio } from "../../Types/Envio";
+import type { TipoFiltroEnvio, Envio } from "../../Types/Envio";
 import { BotonFuncion } from "../Atoms/BotonFuncion";
 import { Titulo } from "../Atoms/Titulo";
 import { FilterBar } from "../Molecules/FilterBar";
@@ -10,10 +10,10 @@ import { ShippingForm } from "../Molecules/ShippingForm";
 
 type PropEnvio = {
   Text: string;
-  onSelectCodigo?: (codigo: number) => void;
+  onSelectEnvio?: (envio: Envio) => void | Promise<void>;
 };
 
-export function ShippingManagement({ Text, onSelectCodigo }: PropEnvio) {
+export function ShippingManagement({ Text, onSelectEnvio }: PropEnvio) {
   const [tipoFiltro, setTipoFiltro] = useState<TipoFiltroEnvio>("todos");
   const [showForm, setShowForm] = useState(false);
 
@@ -24,7 +24,6 @@ export function ShippingManagement({ Text, onSelectCodigo }: PropEnvio) {
   };
 
   const handleFormSuccess = () => {
-    // Recargar los envíos después de crear uno nuevo
     window.location.reload();
   };
 
@@ -43,7 +42,7 @@ export function ShippingManagement({ Text, onSelectCodigo }: PropEnvio) {
         <SearchBar text={Text}></SearchBar>
         {errores && <p>Error: {errores}</p>}
         {loading && <p>Loading...</p>}
-        <ShippingCard datos={data || []} onSelectCodigo={onSelectCodigo} />
+        <ShippingCard datos={data || []} onSelectEnvio={onSelectEnvio} />
       </div>
       {showForm && (
         <ShippingForm
