@@ -9,7 +9,9 @@ export function Rutas(){
       undefined
     );
     const { envio, fetchEnvio } = useEnvioCodigo();
-  
+  useEffect(() => {
+  if (selectedEnvio) console.log(selectedEnvio);
+}, [selectedEnvio]);
     useEffect(() => {
       setSelectedEnvio(envio);
     }, [envio]);
