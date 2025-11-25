@@ -12,14 +12,16 @@ export function useUpdateDistribucionEstado() {
     setError(null);
 
     try {
-      // Crear el objeto distribucionDto con todos los campos, cambiando el estado a "entregado"
+      // Crear el objeto distribucionDto con todos los campos, cambiando el estado
+      // El servidor puede esperar diferentes valores. Probamos con "completado" primero
+      // ya que es el estado que aparece en la tabla como válido
       const distribucionDto = {
         distribucionID: distribucion.distribucionID,
         empleadoID: distribucion.empleadoID,
         fecha: distribucion.fecha,
         litrosEntregados: distribucion.litrosEntregados,
         destino: distribucion.destino,
-        estado: "entregado",
+        estado: "completado", // Cambiar a completado en lugar de entregado
       };
 
       const res = await fetch(`${BASE_URL}/${distribucion.distribucionID}`, {

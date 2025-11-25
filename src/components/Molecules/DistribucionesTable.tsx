@@ -53,8 +53,11 @@ export function DistribucionesTable({ distribuciones, loading, error, onUpdate }
   const getEstadoBadge = (estado: string) => {
     const estados: { [key: string]: string } = {
       espera: "warning",
+      Espera: "warning",
       completado: "success",
+      Completado: "success",
       entregado: "info",
+      Entregado: "info",
     };
     const color = estados[estado] || "secondary";
     return `badge bg-${color}`;
@@ -108,9 +111,9 @@ export function DistribucionesTable({ distribuciones, loading, error, onUpdate }
                   </td>
                   <td>{formatDate(distribucion.fechaRegistro)}</td>
                   <td>
-                    {distribucion.estado !== "entregado" && (
+                    {distribucion.estado !== "completado" && distribucion.estado !== "Completado" && distribucion.estado !== "entregado" && distribucion.estado !== "Entregado" && (
                       <BotonFuncion
-                        nombre="Marcar Entregado"
+                        nombre="Marcar Completado"
                         onClick={() => setSelectedDistribucion(distribucion)}
                       />
                     )}

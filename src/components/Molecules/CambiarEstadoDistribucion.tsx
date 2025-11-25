@@ -64,7 +64,7 @@ export function CambiarEstadoDistribucion({ distribucion, onSuccess, onClose }: 
             <strong>Estado actual:</strong> {distribucion.estado}
           </p>
           <p className="text-muted">
-            ¿Desea cambiar el estado a <strong>"entregado"</strong>?
+            ¿Desea cambiar el estado a <strong>"completado"</strong>?
           </p>
         </div>
 
@@ -89,7 +89,7 @@ export function CambiarEstadoDistribucion({ distribucion, onSuccess, onClose }: 
             onClick={handleCambiarEstado}
             disabled={loading}
           >
-            {loading ? "Actualizando..." : "Cambiar a Entregado"}
+            {loading ? "Actualizando..." : "Cambiar a Completado"}
           </button>
         </div>
       </div>
