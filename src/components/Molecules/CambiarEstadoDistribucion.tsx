@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BotonFuncion } from "../Atoms/BotonFuncion";
 import { Titulo } from "../Atoms/Titulo";
 import { useUpdateDistribucionEstado } from "../../Hooks/useUpdateDistribucionEstado";

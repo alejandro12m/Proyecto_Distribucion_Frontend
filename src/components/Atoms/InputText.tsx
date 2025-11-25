@@ -2,12 +2,13 @@ import { useState } from "react";
 interface propsInputText {
   placeholder?: string;
   type?: string; // opcional, por defecto será "text"
+  step?: string; // para inputs de tipo number
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
 }
 
 export default function InputText(props:propsInputText) {
-  const { placeholder = "Escriba esto", type = "text", onChange, value } = props;
+  const { placeholder = "Escriba esto", type = "text", step, onChange, value } = props;
   const [texto, setTexto] = useState("");
 
   const isControlled = value !== undefined;
@@ -29,6 +30,7 @@ export default function InputText(props:propsInputText) {
       placeholder={placeholder}
       value={inputValue}
       onChange={handleChange}
+      step={step}
     />
   );
 }
