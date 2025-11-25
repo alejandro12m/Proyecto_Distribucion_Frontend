@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Pages } from "../Molecules/Pages";
 import { Perfil } from "../Molecules/Perfil";
 
-type Ventanas = "Dashboard" | "GestionEnvios" | "Rutas";
+type Ventanas = "Dashboard" | "GestionEnvios" | "Rutas" | "GestionInventario" | "GestionDistribuciones";
 
 interface ListarPages {
   titulo: string;
@@ -32,7 +32,7 @@ export function Sidebar({ titulo, nombres, links, setVentana, ventanaActual, sid
     nombres: n,
     links: links[i],
     onClick: () => {
-      setVentana && setVentana(n as Ventanas);
+    setVentana?.(n as Ventanas);
       // Cerrar sidebar en móvil al seleccionar
       if (!isDesktop && setSidebarOpen) {
         setSidebarOpen(false);

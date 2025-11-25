@@ -3,16 +3,31 @@ import { ShippingManagement } from "../Organisms/ShippingManagement";
 import { useState } from "react";
 import type { Envio } from "../../Types/Envio";
 import { useDetallePedido } from "../../Hooks/useDetallePedido";
+import { useRutaData } from "../../Hooks/useRutaData";
 
-export default function GestionEnvios() {
+type Props = {
+  rutaCodigo?: number;
+};
+
+export default function GestionEnvios({ rutaCodigo }: Props) {
   const [selectedEnvio, setSelectedEnvio] = useState<Envio | undefined>(
     undefined
   );
-  const { detalles, loading, error, fetchDetalles } = useDetallePedido();
+  const { detalles: detallesPedido, loading: loadingPedido, error: errorPedido, fetchDetalles } = useDetallePedido();
+  const { envio: envioRuta, detalles: detallesRuta, loading: loadingRuta } = useRutaData(rutaCodigo);
+
+  // Si hay un código de ruta, usar los datos de la ruta
+  const detalles = rutaCodigo ? detallesRuta : detallesPedido;
+  const loading = rutaCodigo ? loadingRuta : loadingPedido;
+  const error = rutaCodigo ? null : errorPedido;
+  // Usar envioRuta si hay rutaCodigo, sino usar selectedEnvio
+  const envioActual = rutaCodigo ? envioRuta : selectedEnvio;
 
   const handleSelectEnvio = async (envio: Envio) => {
     setSelectedEnvio(envio);
-    await fetchDetalles(envio.codigo);
+    if (!rutaCodigo) {
+      await fetchDetalles(envio.codigoPedido);
+    }
   };
 
   return (
@@ -28,7 +43,7 @@ export default function GestionEnvios() {
         <div className="h-100 border border-2 border-dark">
           <div className="">
             <ShippingDetailsManagement
-              envio={selectedEnvio}
+              envio={envioActual}
               detalles={detalles}
               loading={loading}
               error={error}

@@ -5,8 +5,10 @@ import {Dashboard} from "./components/Pages/Dashboard";
 import GestionEnvios from "./components/Pages/GestionEnvios";
 import { Sidebar } from "./components/Organisms/Sidebar";
 import { Rutas } from "./components/Pages/Rutas";
+import { GestionInventario } from "./components/Pages/GestionInventario";
+import { GestionDistribuciones } from "./components/Pages/GestionDistribuciones";
 
-type Ventanas = "Dashboard" | "GestionEnvios" | "Rutas";
+type Ventanas = "Dashboard" | "GestionEnvios" | "Rutas" | "GestionInventario" | "GestionDistribuciones";
 
 export function Root() {
   const [ventanaActual, setVentanaActual] = useState<Ventanas>("Dashboard");
@@ -32,8 +34,8 @@ export function Root() {
     <div className="d-flex min-vh-100 bg-light">
       <Sidebar
         titulo="Lácteos del Sur"
-        nombres={["Dashboard", "GestionEnvios","Rutas"]}
-        links={["/dashboard", "/gestion-envios","/rutas"]}
+        nombres={["Dashboard", "GestionEnvios","Rutas", "GestionInventario", "GestionDistribuciones"]}
+        links={["/dashboard", "/gestion-envios","/rutas", "/gestion-inventario", "/gestion-distribuciones"]}
         setVentana={setVentanaActual}
         ventanaActual={ventanaActual}
         sidebarOpen={sidebarOpen}
@@ -82,7 +84,8 @@ export function Root() {
           {ventanaActual === "Dashboard" && <Dashboard />}
           {ventanaActual === "GestionEnvios" && <GestionEnvios />}
           {ventanaActual === "Rutas" && <Rutas />}
-
+          {ventanaActual === "GestionInventario" && <GestionInventario />}
+          {ventanaActual === "GestionDistribuciones" && <GestionDistribuciones />}
         </div>
       </main>
     </div>

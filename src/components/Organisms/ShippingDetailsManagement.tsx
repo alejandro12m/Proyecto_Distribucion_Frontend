@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { BotonFuncion } from "../Atoms/BotonFuncion";
 import { BotonLink } from "../Atoms/BotonLink";
 import { PlusIcon } from "../Atoms/Iconos/PlusIcon";
 import { Titulo } from "../Atoms/Titulo";
 import { ShippingCard } from "../Molecules/ShippingCard";
 import { DetallesTable } from "../Molecules/DetallesTable";
+import { FacturaForm } from "../Molecules/FacturaForm";
 import type { Envio, DetalleProducto } from "../../Types/Envio";
 
 type Props = {
@@ -14,10 +16,32 @@ type Props = {
 };
 
 export function ShippingDetailsManagement({ envio, detalles = [], loading = false, error }: Props) {
+  const [showFacturaForm, setShowFacturaForm] = useState(false);
   const icono: React.ReactNode = <PlusIcon />;
+  
+  const handleMarcarEntregado = () => {
+    if (envio) {
+      setShowFacturaForm(true);
+    } else {
+      alert("Por favor, seleccione un envío primero");
+    }
+  };
+
+  const handleFacturaSuccess = () => {
+    // Aquí puedes agregar lógica adicional después de registrar la factura
+    // Por ejemplo, actualizar el estado del envío
+    console.log("Factura registrada exitosamente");
+  };
   
   return (
     <>
+      {showFacturaForm && (
+        <FacturaForm
+          onClose={() => setShowFacturaForm(false)}
+          onSuccess={handleFacturaSuccess}
+          envioCodigo={envio?.codigoPedido}
+        />
+      )}
       <div>
         <div style={{ display: "flex" }}>
           <Titulo titulo="Envio"></Titulo>
@@ -28,6 +52,7 @@ export function ShippingDetailsManagement({ envio, detalles = [], loading = fals
           <BotonFuncion
             nombre="Marcarcomo entregado"
             children={icono}
+            onClick={handleMarcarEntregado}
           ></BotonFuncion>
         </div>
 

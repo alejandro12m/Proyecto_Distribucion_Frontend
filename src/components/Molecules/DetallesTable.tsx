@@ -27,7 +27,7 @@ export function DetallesTable({ detalles }: Props) {
               <td>{detalle.codigoProducto}</td>
               <td>{detalle.cantidad}</td>
               <td>${detalle.precioUnitarioVenta.toFixed(2)}</td>
-              <td>${(detalle.cantidad * detalle.precioUnitarioVenta).toFixed(2)}</td>
+              <td>${(detalle.subtotal).toFixed(2)}</td>
             </tr>
           ))}
         </tbody>
